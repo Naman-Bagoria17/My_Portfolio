@@ -1671,6 +1671,6 @@ form *,
 .hamburger {
     margin-right: 10px !important;
     /* Pushes icon left */
-    transform: translateX(9px) !important;
+    transform: translateX(-20px) !important;
     /* Fine-tune position */
 }
