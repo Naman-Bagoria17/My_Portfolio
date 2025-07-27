@@ -8,7 +8,7 @@ Deployed via **GitHub Pages**, built from scratch using **HTML**, **CSS**, and *
 
 ## 🔗 Live Demo
 
-🌍 [Visit My Portfolio](https://Naman-Bagoria17.github.io)
+🌍 [Visit My Portfolio](https://naman-bagoria17.github.io/My_Portfolio/)
 
 ---
 
