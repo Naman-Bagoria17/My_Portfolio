@@ -1457,6 +1457,10 @@ form *,
     border-radius: 6px;
     background: rgba(0, 212, 255, 0.1);
     transition: all 0.3s ease;
+/* Add these for centering */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-menu.active .nav-link:hover {
@@ -1662,4 +1666,11 @@ form *,
         padding: 0.6rem 0.8rem;
         font-size: 0.75rem;
     }
+}
+
+.hamburger {
+    margin-right: 10px !important;
+    /* Pushes icon left */
+    transform: translateX(9px) !important;
+    /* Fine-tune position */
 }
