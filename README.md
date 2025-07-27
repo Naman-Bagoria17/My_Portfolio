@@ -14,14 +14,16 @@ Deployed via **GitHub Pages**, built from scratch using **HTML**, **CSS**, and *
 
 ## 📁 Project Structure
 
-├── index.html # Main HTML file
-├── style_cyber.css # Cyber-themed custom CSS
-├── script_cyber.js # JavaScript for interactivity and animation
-├── resume.pdf # Downloadable resume
-├── Langbridge.png # Project thumbnail
-├── Shortify.png # Project thumbnail
-├── Vizstra.png # Project thumbnail
-└── README.md # This file
+```
+├── index.html           # Main HTML file
+├── style_cyber.css      # Cyber-themed custom CSS
+├── script_cyber.js      # JavaScript for interactivity and animation
+├── resume.pdf           # Downloadable resume
+├── Langbridge.png       # Project thumbnail
+├── Shortify.png         # Project thumbnail
+├── Vizstra.png          # Project thumbnail
+└── README.md            # This file
+```
 
 
 ---
