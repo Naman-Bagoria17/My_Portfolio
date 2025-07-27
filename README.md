@@ -1,215 +1,74 @@
-# Portfolio Backend - Contact Form API
+# 🚀 Naman Bagoria – Developer Portfolio
 
-A secure Node.js backend for handling portfolio contact form submissions with email notifications using Nodemailer.
+Welcome to my personal portfolio website! This site highlights my projects, skills, and provides a direct way to reach out to me.
 
-## Features
+Deployed via **GitHub Pages**, built from scratch using **HTML**, **CSS**, and **JavaScript**, it reflects my interests in full-stack development and modern web UI/UX.
 
-- ✅ **Secure Email Handling** - Uses Nodemailer with Gmail/SMTP
-- ✅ **Input Validation** - Comprehensive validation for name, email, and message
-- ✅ **Rate Limiting** - Prevents spam with 5 requests per 15 minutes per IP
-- ✅ **Security Headers** - Helmet.js for security best practices
-- ✅ **Spam Protection** - Basic spam pattern detection
-- ✅ **Environment Variables** - Secure credential management
-- ✅ **Error Handling** - Comprehensive error handling and logging
-- ✅ **CORS Support** - Configurable cross-origin requests
+---
 
-## Setup Instructions
+## 🔗 Live Demo
 
-### 1. Install Dependencies
+🌍 [Visit My Portfolio](https://Naman-Bagoria17.github.io)
 
-```bash
-npm install
-```
+---
 
-### 2. Environment Configuration
+## 📁 Project Structure
 
-Create a `.env` file in the root directory:
+├── index.html # Main HTML file
+├── style_cyber.css # Cyber-themed custom CSS
+├── script_cyber.js # JavaScript for interactivity and animation
+├── resume.pdf # Downloadable resume
+├── Langbridge.png # Project thumbnail
+├── Shortify.png # Project thumbnail
+├── Vizstra.png # Project thumbnail
+└── README.md # This file
 
-```bash
-cp .env.example .env
-```
 
-Edit the `.env` file with your credentials:
+---
 
-```env
-# Server Configuration
-PORT=3000
-NODE_ENV=development
-FRONTEND_URL=http://localhost:3000
+## ✨ Features
 
-# Email Configuration (Gmail)
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
-RECIPIENT_EMAIL=your-email@gmail.com
-```
+- Cyberpunk-inspired animated UI  
+- Custom cursor and scroll effects using AOS  
+- Project showcase with interactive cards and thumbnails  
+- Resume download option  
+- Responsive and fast loading  
+- Contact links with email integration
 
-### 3. Gmail App Password Setup
+---
 
-For Gmail, you need to create an App Password:
+## 🛠 Built With
 
-1. Go to your [Google Account settings](https://myaccount.google.com/)
-2. Navigate to **Security** → **2-Step Verification**
-3. Scroll down to **App passwords**
-4. Generate a new app password for "Mail"
-5. Use this 16-character password in `EMAIL_PASS`
+- **HTML5**  
+- **CSS3** *(custom styles + animations)*  
+- **Vanilla JavaScript**  
+- **AOS (Animate On Scroll)**  
+- **EmailJS (optional, if implemented)*  
+- **GitHub Pages**
 
-### 4. Start the Server
+---
 
-Development mode with auto-restart:
-```bash
-npm run dev
-```
+## 📸 Preview
 
-Production mode:
-```bash
-npm start
-```
+> Insert a screenshot or live preview GIF here (optional)
 
-## API Endpoints
+---
 
-### POST /api/contact
+## 📬 Contact
 
-Submit a contact form message.
+Feel free to connect or reach out:
 
-**Request Body:**
-```json
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "message": "Hello, I'd like to get in touch!"
-}
-```
+- ✉️ namanbagoria@gmail.com  
+- 💼 [LinkedIn](https://www.linkedin.com/in/naman-bagoria)   
+- 💻 [GitHub](https://github.com/Naman-Bagoria17)
 
-**Success Response (200):**
-```json
-{
-  "success": true,
-  "message": "Your message has been sent successfully! I'll get back to you soon.",
-  "messageId": "email-message-id"
-}
-```
+---
 
-**Error Response (400/500):**
-```json
-{
-  "success": false,
-  "message": "Error description",
-  "errors": ["Validation error 1", "Validation error 2"]
-}
-```
+## 📄 License
 
-### GET /api/health
+This project is open-source and free to use for learning or inspiration.  
+Just give credit if you fork or adapt it.
 
-Health check endpoint.
+---
 
-**Response (200):**
-```json
-{
-  "success": true,
-  "message": "Server is running",
-  "timestamp": "2024-01-01T00:00:00.000Z"
-}
-```
-
-## Validation Rules
-
-### Name
-- Required string
-- 2-100 characters
-- Only letters, spaces, hyphens, and apostrophes
-
-### Email
-- Required valid email format
-- Maximum 254 characters
-- Normalized using validator.js
-
-### Message
-- Required string
-- 10-5000 characters
-- Basic spam pattern detection
-
-## Security Features
-
-- **Rate Limiting**: 5 requests per 15 minutes per IP
-- **Input Sanitization**: HTML escaping for all inputs
-- **Spam Detection**: Pattern matching for common spam content
-- **CORS Protection**: Configurable allowed origins
-- **Security Headers**: Helmet.js middleware
-- **Environment Variables**: Sensitive data protection
-
-## Deployment
-
-### Heroku Deployment
-
-1. Create a new Heroku app
-2. Set environment variables in Heroku dashboard
-3. Deploy using Git:
-
-```bash
-git add .
-git commit -m "Initial commit"
-heroku git:remote -a your-app-name
-git push heroku main
-```
-
-### Environment Variables for Production
-
-Set these in your hosting platform:
-
-```
-NODE_ENV=production
-PORT=3000
-FRONTEND_URL=https://your-portfolio-domain.com
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
-RECIPIENT_EMAIL=your-email@gmail.com
-```
-
-## Frontend Integration
-
-Update your frontend contact form to use the new API:
-
-```javascript
-// Replace EmailJS with fetch API
-const response = await fetch('/api/contact', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        name: formData.get('user_name'),
-        email: formData.get('user_email'),
-        message: formData.get('message')
-    })
-});
-
-const result = await response.json();
-```
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Gmail Authentication Error**
-   - Ensure 2FA is enabled
-   - Use App Password, not regular password
-   - Check EMAIL_USER and EMAIL_PASS in .env
-
-2. **CORS Errors**
-   - Update FRONTEND_URL in .env
-   - Ensure frontend and backend URLs match
-
-3. **Rate Limiting**
-   - Wait 15 minutes between testing
-   - Adjust rate limits in server.js if needed
-
-### Logs
-
-Check server logs for detailed error information:
-```bash
-npm run dev  # Shows detailed logs in development
-```
-
-## License
-
-MIT License - feel free to use this for your own portfolio!
+> 🚧 This portfolio is actively maintained. Stay tuned for updates!
