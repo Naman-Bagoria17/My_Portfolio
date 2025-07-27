@@ -162,84 +162,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Special handling for entire contact section - braces cursor throughout
-    const contactSection = document.querySelector('#contact');
-    let isInContactSection = false;
+    // Contact section - no special cursor handling, use default behavior
 
-    if (contactSection) {
-        contactSection.addEventListener('mouseenter', (e) => {
-            if (!isOverClickable) {
-                isInContactSection = true;
-                cursor.style.transform = 'scale(1.3)';
-                cursor.style.filter = 'drop-shadow(0 0 25px var(--cyber-blue)) drop-shadow(0 0 50px var(--cyber-emerald))';
-                cursorSymbol.textContent = '{}';
-                cursorSymbol.style.fontSize = '18px';
-                cursorSymbol.style.color = '#ffffff';
-                cursorGlow.style.background = 'radial-gradient(circle, var(--cyber-blue) 0%, rgba(0, 212, 255, 0.6) 40%, transparent 70%)';
-                cursorGlow.style.boxShadow = '0 0 35px var(--cyber-blue), 0 0 70px rgba(0, 212, 255, 0.8), inset 0 0 20px rgba(0, 212, 255, 0.4)';
-            }
-        });
-
-        contactSection.addEventListener('mouseleave', (e) => {
-            // Only reset if we're actually leaving the contact section
-            if (!contactSection.contains(e.relatedTarget) && !isOverClickable) {
-                isInContactSection = false;
-                resetCursor();
-            }
-        });
-
-        // Prevent any child elements from changing the cursor
-        contactFormSelectors.forEach(selector => {
-            document.querySelectorAll(selector).forEach(element => {
-                if (contactSection.contains(element)) {
-                    element.addEventListener('mouseenter', (e) => {
-                        e.stopPropagation();
-                        if (!isOverClickable && isInContactSection) {
-                            cursor.style.transform = 'scale(1.3)';
-                            cursor.style.filter = 'drop-shadow(0 0 25px var(--cyber-blue)) drop-shadow(0 0 50px var(--cyber-emerald))';
-                            cursorSymbol.textContent = '{}';
-                            cursorSymbol.style.fontSize = '18px';
-                            cursorSymbol.style.color = '#ffffff';
-                            cursorGlow.style.background = 'radial-gradient(circle, var(--cyber-blue) 0%, rgba(0, 212, 255, 0.6) 40%, transparent 70%)';
-                            cursorGlow.style.boxShadow = '0 0 35px var(--cyber-blue), 0 0 70px rgba(0, 212, 255, 0.8), inset 0 0 20px rgba(0, 212, 255, 0.4)';
-                        }
-                    });
-
-                    element.addEventListener('mouseleave', (e) => {
-                        e.stopPropagation();
-                        // Don't reset cursor when moving within contact section
-                        if (isInContactSection && contactSection.contains(e.relatedTarget)) {
-                            cursor.style.transform = 'scale(1.3)';
-                            cursor.style.filter = 'drop-shadow(0 0 25px var(--cyber-blue)) drop-shadow(0 0 50px var(--cyber-emerald))';
-                            cursorSymbol.textContent = '{}';
-                            cursorSymbol.style.fontSize = '18px';
-                            cursorSymbol.style.color = '#ffffff';
-                            cursorGlow.style.background = 'radial-gradient(circle, var(--cyber-blue) 0%, rgba(0, 212, 255, 0.6) 40%, transparent 70%)';
-                            cursorGlow.style.boxShadow = '0 0 35px var(--cyber-blue), 0 0 70px rgba(0, 212, 255, 0.8), inset 0 0 20px rgba(0, 212, 255, 0.4)';
-                        }
-                    });
-                }
-            });
-        });
-    }
-
-    // Special handling for form elements to prevent white cursor
+    // Special handling for form elements to use themed cursor
     const formElements = document.querySelectorAll('input, textarea, select, .cyber-input, .cyber-textarea');
     formElements.forEach(element => {
-        // Force hide cursor on focus
+        // Use themed cursor and neon red caret on focus
         element.addEventListener('focus', () => {
-            element.style.cursor = 'none';
-            element.style.caretColor = 'var(--cyber-emerald)';
+            element.style.cursor = 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13.64 21.97C13.14 22.21 12.54 22 12.31 21.5L10.13 16.76L7.62 18.78C7.45 18.92 7.24 19 7.01 19C6.2 19 5.66 18.18 6.06 17.5L8.5 13L7.5 12.5C6.93 12.21 6.93 11.29 7.5 11L18.6 5.88C19.37 5.19 20.5 6.32 19.81 7.09L13.64 21.97Z" fill="%2300ff88" stroke="%2300d4ff" stroke-width="0.5"/></svg>\'), pointer';
+            element.style.caretColor = '#ff0040';
         });
 
-        // Keep cursor hidden on blur
+        // Keep themed cursor on blur
         element.addEventListener('blur', () => {
-            element.style.cursor = 'none';
+            element.style.cursor = 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13.64 21.97C13.14 22.21 12.54 22 12.31 21.5L10.13 16.76L7.62 18.78C7.45 18.92 7.24 19 7.01 19C6.2 19 5.66 18.18 6.06 17.5L8.5 13L7.5 12.5C6.93 12.21 6.93 11.29 7.5 11L18.6 5.88C19.37 5.19 20.5 6.32 19.81 7.09L13.64 21.97Z" fill="%2300ff88" stroke="%2300d4ff" stroke-width="0.5"/></svg>\'), pointer';
         });
 
-        // Prevent cursor changes on input
+        // Keep themed cursor on input
         element.addEventListener('input', () => {
-            element.style.cursor = 'none';
+            element.style.cursor = 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13.64 21.97C13.14 22.21 12.54 22 12.31 21.5L10.13 16.76L7.62 18.78C7.45 18.92 7.24 19 7.01 19C6.2 19 5.66 18.18 6.06 17.5L8.5 13L7.5 12.5C6.93 12.21 6.93 11.29 7.5 11L18.6 5.88C19.37 5.19 20.5 6.32 19.81 7.09L13.64 21.97Z" fill="%2300ff88" stroke="%2300d4ff" stroke-width="0.5"/></svg>\'), pointer';
+            element.style.caretColor = '#ff0040';
         });
     });
 
@@ -256,28 +198,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const contactSection = document.querySelector('#contact');
         const isInContactArea = contactSection && contactSection.contains(elementUnderMouse);
 
-        // Check if we're over a form element
-        const isOverFormElement = elementUnderMouse && (
-            elementUnderMouse.matches('input, textarea, select, .cyber-input, .cyber-textarea') ||
-            elementUnderMouse.closest('input, textarea, select, .cyber-input, .cyber-textarea')
-        );
-
-        if (isOverClickableElement && !isOverClickable) {
-            // Hide custom cursor for all clickable elements (including submit button)
+        if (isInContactArea) {
+            // Hide custom cursor completely in contact section
             hideCustomCursor();
-        } else if (isInContactArea && !isOverClickableElement) {
-            // Force braces cursor in contact section (but not on clickable elements)
-            if (!isOverClickable) {
-                showCustomCursor();
-                cursor.style.transform = 'scale(1.3)';
-                cursor.style.filter = 'drop-shadow(0 0 25px var(--cyber-blue)) drop-shadow(0 0 50px var(--cyber-emerald))';
-                cursorSymbol.textContent = '{}';
-                cursorSymbol.style.fontSize = '18px';
-                cursorSymbol.style.color = '#ffffff';
-                cursorGlow.style.background = 'radial-gradient(circle, var(--cyber-blue) 0%, rgba(0, 212, 255, 0.6) 40%, transparent 70%)';
-                cursorGlow.style.boxShadow = '0 0 35px var(--cyber-blue), 0 0 70px rgba(0, 212, 255, 0.8), inset 0 0 20px rgba(0, 212, 255, 0.4)';
-            }
-        } else if (!isOverClickableElement && !isOverFormElement && !isInContactArea && isOverClickable) {
+        } else if (isOverClickableElement && !isOverClickable) {
+            // Hide custom cursor for all clickable elements
+            hideCustomCursor();
+        } else if (!isOverClickableElement && isOverClickable) {
             showCustomCursor();
             resetCursor();
         }
@@ -310,24 +237,13 @@ setInterval(() => {
         const cursorGlow = document.querySelector('.cursor-glow');
 
         if (cursor && cursorSymbol && cursorGlow) {
-            if (isOverClickableElement) {
-                // Hide custom cursor for ALL clickable elements (including submit button in contact area)
+            if (isOverClickableElement || isInContactArea) {
+                // Hide custom cursor for clickable elements and entire contact section
                 cursor.style.opacity = '0';
                 cursor.style.visibility = 'hidden';
             } else {
                 cursor.style.opacity = '1';
                 cursor.style.visibility = 'visible';
-
-                // Force braces cursor in contact section (only when not over clickable elements)
-                if (isInContactArea) {
-                    cursor.style.transform = 'scale(1.3)';
-                    cursor.style.filter = 'drop-shadow(0 0 25px var(--cyber-blue)) drop-shadow(0 0 50px var(--cyber-emerald))';
-                    cursorSymbol.textContent = '{}';
-                    cursorSymbol.style.fontSize = '18px';
-                    cursorSymbol.style.color = '#ffffff';
-                    cursorGlow.style.background = 'radial-gradient(circle, var(--cyber-blue) 0%, rgba(0, 212, 255, 0.6) 40%, transparent 70%)';
-                    cursorGlow.style.boxShadow = '0 0 35px var(--cyber-blue), 0 0 70px rgba(0, 212, 255, 0.8), inset 0 0 20px rgba(0, 212, 255, 0.4)';
-                }
             }
         }
     }
@@ -339,19 +255,7 @@ document.addEventListener('mousemove', (e) => {
     window.mouseY = e.clientY;
 });
 
-// Smooth Scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
+// Smooth Scrolling - handled in mobile navigation section below
 
 // Navigation Background on Scroll
 window.addEventListener('scroll', () => {
@@ -370,7 +274,8 @@ const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
 if (hamburger && navMenu) {
-    hamburger.addEventListener('click', () => {
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
@@ -382,7 +287,64 @@ if (hamburger && navMenu) {
             navMenu.classList.remove('active');
         });
     });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+
+    // Prevent menu from closing when clicking inside the menu
+    navMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
 }
+
+// Universal Navigation Handler - works for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href !== '#') {
+            e.preventDefault();
+
+            // Close mobile menu if open
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            if (hamburger && navMenu) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+
+            // Get target element
+            const target = document.querySelector(href);
+            if (target) {
+                // Calculate offset for fixed navbar
+                const nav = document.querySelector('.cyber-nav');
+                const navHeight = nav ? nav.offsetHeight : 80;
+
+                // Different offsets for different sections
+                let extraOffset = 0; // Default offset for home
+                if (href === '#about') {
+                    extraOffset = -20; // Minimal offset for about section
+                } else if (href === '#work') {
+                    extraOffset = 0; // Minimal offset for work section
+                } else if (href === '#contact') {
+                    extraOffset = 0; // Minimal offset for contact section
+                }
+
+                const targetPosition = target.offsetTop - navHeight - extraOffset;
+
+                // Smooth scroll to target with offset
+                window.scrollTo({
+                    top: Math.max(0, targetPosition), // Ensure we don't scroll to negative position
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
 
 // Terminal Typing Effect
 function typeWriter(element, text, speed = 50) {

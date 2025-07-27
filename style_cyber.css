@@ -20,6 +20,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -46,6 +47,8 @@ button *,
 .nav-buttons *,
 .hamburger,
 .hamburger *,
+.status-indicator,
+.status-indicator *,
 .social-link,
 .social-link *,
 [role="button"],
@@ -90,15 +93,23 @@ button:hover *,
 
 /* Keep custom cursor for non-clickable interactive elements */
 .project-card,
-.info-card,
-#contact,
-.contact-content,
-.contact-form-container,
-.terminal-form {
+.info-card {
     cursor: none !important;
 }
 
-/* Force no cursor on form elements to prevent white cursor */
+/* Use themed blue arrow cursor for entire contact section */
+#contact,
+#contact *,
+.contact-content,
+.contact-content *,
+.contact-form-container,
+.contact-form-container *,
+.terminal-form,
+.terminal-form * {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13.64 21.97C13.14 22.21 12.54 22 12.31 21.5L10.13 16.76L7.62 18.78C7.45 18.92 7.24 19 7.01 19C6.2 19 5.66 18.18 6.06 17.5L8.5 13L7.5 12.5C6.93 12.21 6.93 11.29 7.5 11L18.6 5.88C19.37 5.19 20.5 6.32 19.81 7.09L13.64 21.97Z" fill="%2300ff88" stroke="%2300d4ff" stroke-width="0.5"/></svg>'), pointer !important;
+}
+
+/* Use themed cursor on form elements */
 input,
 input *,
 textarea,
@@ -110,9 +121,11 @@ select *,
 .cyber-textarea,
 .cyber-textarea *,
 form,
-form * {
-    cursor: none !important;
-    caret-color: var(--cyber-emerald);
+form *,
+.btn-submit,
+.btn-submit * {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13.64 21.97C13.14 22.21 12.54 22 12.31 21.5L10.13 16.76L7.62 18.78C7.45 18.92 7.24 19 7.01 19C6.2 19 5.66 18.18 6.06 17.5L8.5 13L7.5 12.5C6.93 12.21 6.93 11.29 7.5 11L18.6 5.88C19.37 5.19 20.5 6.32 19.81 7.09L13.64 21.97Z" fill="%2300ff88" stroke="%2300d4ff" stroke-width="0.5"/></svg>'), pointer !important;
+    caret-color: #ff0040;
 }
 
 /* Custom Cursor - Enhanced Visibility */
@@ -126,6 +139,68 @@ form * {
     z-index: 10000;
     will-change: transform;
     filter: drop-shadow(0 0 15px var(--cyber-emerald));
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .custom-cursor {
+        display: none !important;
+    }
+
+    body {
+        cursor: auto !important;
+    }
+
+    /* Reset all custom cursor styles to default on touch devices */
+    a,
+    a *,
+    button,
+    button *,
+    .cyber-btn,
+    .cyber-btn *,
+    .nav-link,
+    .nav-link *,
+    .nav-menu,
+    .nav-menu *,
+    .nav-buttons,
+    .nav-buttons *,
+    .hamburger,
+    .hamburger *,
+    .status-indicator,
+    .status-indicator *,
+    .social-link,
+    .social-link *,
+    [role="button"],
+    [role="button"] *,
+    [onclick],
+    [onclick] *,
+    .clickable,
+    .clickable *,
+    .clickable-element,
+    input,
+    input *,
+    textarea,
+    textarea *,
+    select,
+    select *,
+    .cyber-input,
+    .cyber-input *,
+    .cyber-textarea,
+    .cyber-textarea *,
+    form,
+    form *,
+    .btn-submit,
+    .btn-submit *,
+    #contact,
+    #contact *,
+    .contact-content,
+    .contact-content *,
+    .contact-form-container,
+    .contact-form-container *,
+    .terminal-form,
+    .terminal-form * {
+        cursor: auto !important;
+    }
 }
 
 .cursor-glow {
@@ -289,6 +364,7 @@ form * {
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
+    position: relative;
 }
 
 @media (min-width: 768px) {
@@ -364,6 +440,52 @@ form * {
 
 .nav-link:hover .nav-bracket {
     opacity: 1;
+}
+
+/* Status Indicator */
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    border: 2px dashed var(--cyber-emerald);
+    border-radius: 6px;
+    background: rgba(0, 255, 136, 0.1);
+    margin-left: 2rem;
+    transition: all 0.3s ease;
+}
+
+.status-indicator:hover {
+    background: rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--cyber-emerald);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+    box-shadow: 0 0 8px var(--cyber-emerald);
+}
+
+.status-text {
+    color: var(--cyber-emerald);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: lowercase;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+@keyframes pulse-dot {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2);
+    }
 }
 
 .nav-buttons {
@@ -582,6 +704,21 @@ form * {
     line-height: 1.6;
 }
 
+/* Hero Buttons */
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.hero-buttons .cyber-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    min-width: 140px;
+}
+
 .cursor-blink {
     animation: cursor-blink 1s infinite;
 }
@@ -606,10 +743,14 @@ form * {
 }
 
 /* Section Styles */
-.cyber-about,
+.cyber-about {
+    padding: 4.5rem 0 3rem 0;
+    position: relative;
+}
+
 .cyber-work,
 .cyber-contact {
-    padding: 6rem 0;
+    padding: 3rem 0;
     position: relative;
 }
 
@@ -1174,6 +1315,7 @@ form * {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.9rem;
     transition: all 0.3s ease;
+    caret-color: #ff0040;
 }
 
 .cyber-input:focus,
@@ -1262,8 +1404,8 @@ form * {
 }
 
 .social-link {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background: rgba(0, 212, 255, 0.2);
     border: 1px solid var(--cyber-blue);
     border-radius: 8px;
@@ -1273,6 +1415,8 @@ form * {
     color: var(--cyber-blue);
     text-decoration: none;
     transition: all 0.3s ease;
+    padding: 8px;
+    font-size: 1.2rem;
 }
 
 .social-link:hover {
@@ -1281,16 +1425,118 @@ form * {
     box-shadow: var(--cyber-glow) var(--cyber-blue);
 }
 
+/* Mobile Navigation Styles */
+.nav-menu.active {
+    display: flex !important;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    background: rgba(26, 31, 46, 0.95);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1.5rem 0 2rem 0;
+    gap: 1.5rem;
+    z-index: 1001;
+    border-top: 1px solid var(--cyber-emerald);
+    border-bottom: 1px solid var(--cyber-emerald);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s ease-out;
+}
+
+.nav-menu.active .nav-link {
+    font-size: 1.1rem;
+    padding: 0.8rem 1.5rem;
+    width: 180px;
+    text-align: center;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 6px;
+    background: rgba(0, 212, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.nav-menu.active .nav-link:hover {
+    background: rgba(0, 255, 136, 0.2);
+    border-color: var(--cyber-emerald);
+    transform: translateY(-2px);
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    background: var(--cyber-blue);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+    background: var(--cyber-blue);
+}
+
+
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
 
-    .nav-menu,
-    .nav-buttons {
+    html {
+        scroll-padding-top: 90px;
+    }
+
+    .nav-menu {
         display: none;
     }
 
     .hamburger {
         display: flex;
+    }
+
+    /* Mobile status indicator positioning */
+    .status-indicator {
+        margin-left: auto;
+        margin-right: 1.5rem;
+        padding: 0.4rem 0.6rem;
+        order: 2;
+        border: none;
+        background: transparent;
+    }
+
+    .hamburger {
+        order: 3;
+    }
+
+    .nav-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-logo {
+        order: 1;
+    }
+
+    .status-indicator .status-text {
+        font-size: 0.75rem;
+    }
+
+    .status-dot {
+        width: 6px;
+        height: 6px;
     }
 
     .cyber-title {
@@ -1303,6 +1549,21 @@ form * {
 
     .terminal-body {
         padding: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .hero-buttons .cyber-btn {
+        width: 100%;
+        min-width: auto;
+        padding: 1rem;
+        font-size: 0.9rem;
+        position: relative;
+        z-index: 10;
     }
 
     .contact-content {
@@ -1347,6 +1608,19 @@ form * {
 }
 
 /* Tablet responsive design */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .nav-link {
+        white-space: nowrap;
+        min-width: 90px;
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+
+    .nav-menu {
+        gap: 0.3rem;
+    }
+}
+
 @media (max-width: 1024px) {
     .work-grid {
         gap: 1.5rem;
