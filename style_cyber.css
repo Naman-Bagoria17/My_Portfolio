@@ -1462,17 +1462,19 @@ form *,
 
 .nav-menu.active .nav-link {
     font-size: 1.1rem;
-    padding: 0.8rem 1.5rem;
+    padding: 0.8rem 1rem;
     width: 180px;
     text-align: center;
     border: 1px solid rgba(0, 212, 255, 0.3);
     border-radius: 6px;
     background: rgba(0, 212, 255, 0.1);
     transition: all 0.3s ease;
-/* Add these for centering */
+    /* Perfect centering */
     display: flex;
     align-items: center;
     justify-content: center;
+    line-height: 1.2;
+    box-sizing: border-box;
 }
 
 .nav-menu.active .nav-link:hover {
@@ -1653,6 +1655,10 @@ form *,
 
     .hero-content {
         padding: 0 1.8rem; /* Closer to original - less width increase */
+    }
+
+    .cyber-hero {
+        padding-top: 60px; /* Less space between navbar and home container */
     }
 
     /* Mobile typing animation adjustments */
@@ -1902,6 +1908,16 @@ form *,
     .hamburger {
         margin-right: 0.8rem !important;
     }
+
+    .cyber-hero {
+        padding-top: 50px; /* Even less space for small screens */
+    }
+
+    .nav-menu.active .nav-link {
+        font-size: 1rem; /* Smaller text for small screens */
+        padding: 0.7rem 0.8rem;
+        width: 160px; /* Slightly smaller button width */
+    }
 }
 
 /* Very small screens - 386px and below */
@@ -1912,5 +1928,11 @@ form *,
 
     .hamburger {
         margin-right: 0.5rem !important;
+    }
+
+    .nav-menu.active .nav-link {
+        font-size: 0.9rem; /* Even smaller text for very small screens */
+        padding: 0.6rem 0.7rem;
+        width: 150px; /* Compact button width */
     }
 }
