@@ -674,12 +674,21 @@ form *,
     font-size: 1.8rem;
 }
 
+/* Typing Animation Container */
+.typing-line {
+    display: inline-block;
+    white-space: nowrap; /* Prevents line breaks */
+    min-height: 3rem; /* Reserve height to prevent shifting */
+    vertical-align: top;
+}
+
 /* Typing Animation */
 .typing-text {
     color: var(--cyber-text);
     font-size: 2.5rem;
     min-height: 1.2em;
-    display: inline-block;
+    display: inline;
+    vertical-align: top;
 }
 
 .typing-cursor {
@@ -687,6 +696,9 @@ form *,
     font-size: 2.5rem;
     animation: cursor-blink 1s infinite;
     margin-left: 2px;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 1.2; /* Match the text line height */
 }
 
 @keyframes cursor-blink {
@@ -1523,6 +1535,8 @@ form *,
 
     .hamburger {
         order: 3;
+        margin-right: 1rem; /* Consistent right margin */
+        margin-left: auto; /* Push to right side */
     }
 
     .nav-container {
@@ -1544,15 +1558,117 @@ form *,
     }
 
     .cyber-title {
-        font-size: 2rem;
+        font-size: 1.6rem;
+    }
+
+    .location-text {
+        font-size: 1.3rem;
+        margin-top: -1.2rem; /* Much less space above location text */
     }
 
     .section-title {
-        font-size: 2rem;
+        font-size: 1.8rem; /* Reduced from 2rem */
+    }
+
+    .section-subtitle {
+        font-size: 1rem; /* Reduced from 1.2rem */
+    }
+
+    .about-text {
+        font-size: 0.9rem; /* Smaller body text */
+    }
+
+    .panel-title {
+        font-size: 0.9rem; /* Smaller panel titles */
+    }
+
+    .nav-logo {
+        font-size: 1.3rem; /* Smaller navigation logo */
+    }
+
+    .info-card h3 {
+        font-size: 1rem; /* Smaller contact card titles */
+    }
+
+    .info-card p {
+        font-size: 0.9rem; /* Smaller contact card text */
+    }
+
+    .cyber-subtitle {
+        font-size: 0.95rem; /* Smaller description text */
+        line-height: 1.5;
+    }
+
+    .hero-buttons .cyber-btn {
+        padding: 0.7rem 1.2rem; /* Smaller button padding */
+        font-size: 0.9rem; /* Smaller button text */
+    }
+
+    /* Contact page mobile optimization */
+    .info-title {
+        font-size: 0.9rem; /* Smaller contact card titles */
+    }
+
+    .info-link {
+        font-size: 0.85rem; /* Smaller contact links */
+    }
+
+    .info-text {
+        font-size: 0.85rem; /* Smaller contact text */
+    }
+
+    .form-label {
+        font-size: 0.9rem; /* Smaller form labels */
+    }
+
+    .cyber-input, .cyber-textarea {
+        font-size: 0.85rem; /* Smaller input text */
+        padding: 0.6rem; /* Smaller input padding */
+    }
+
+    .btn-submit {
+        font-size: 0.85rem; /* Smaller submit button */
+        padding: 0.7rem 1.2rem;
+    }
+
+    /* Footer mobile optimization */
+    .footer-text {
+        font-size: 0.8rem; /* Smaller footer text */
+    }
+
+    .social-link {
+        width: 40px; /* Smaller social icons */
+        height: 40px;
+        font-size: 1rem; /* Smaller icon size */
+        padding: 6px;
+    }
+
+    .cyber-footer {
+        padding: 1.5rem 0; /* Less footer padding */
     }
 
     .terminal-body {
         padding: 1rem;
+    }
+
+    .hero-content {
+        padding: 0 1.8rem; /* Closer to original - less width increase */
+    }
+
+    /* Mobile typing animation adjustments */
+    .typing-line {
+        white-space: nowrap; /* Keep text on one line */
+        max-width: 100%; /* Prevent overflow */
+        overflow: hidden; /* Hide overflow */
+    }
+
+    .typing-text {
+        font-size: 1.4rem; /* Much smaller font for mobile */
+        white-space: nowrap; /* Keep on one line */
+    }
+
+    .typing-cursor {
+        font-size: 1.4rem; /* Match text size */
     }
 
     .hero-buttons {
@@ -1638,6 +1754,109 @@ form *,
 
 /* Small mobile devices */
 @media (max-width: 480px) {
+    /* Even smaller text for very small screens */
+    .hero-content {
+        padding: 0 1.3rem; /* Less width increase for small screens */
+    }
+
+    .cyber-title {
+        font-size: 1.3rem;
+    }
+
+    .location-text {
+        font-size: 1rem;
+        margin-top: -1.5rem; /* Very tight spacing for small screens */
+    }
+
+    .typing-text {
+        font-size: 1.3rem; /* Good size for profession text */
+    }
+
+    .typing-cursor {
+        font-size: 1.3rem; /* Match profession text */
+    }
+
+    .section-title {
+        font-size: 1.5rem; /* Smaller section titles */
+    }
+
+    .section-subtitle {
+        font-size: 0.9rem; /* Smaller subtitles */
+    }
+
+    .about-text {
+        font-size: 0.85rem; /* Even smaller body text */
+    }
+
+    .panel-title {
+        font-size: 0.8rem; /* Compact panel titles */
+    }
+
+    .work-info h3 {
+        font-size: 1rem; /* Reduced from 1.1rem */
+    }
+
+    .work-info p {
+        font-size: 0.8rem; /* Reduced from 0.85rem */
+    }
+
+    .cyber-subtitle {
+        font-size: 0.85rem; /* Even smaller description for small screens */
+        line-height: 1.4;
+    }
+
+    .hero-buttons .cyber-btn {
+        padding: 0.6rem 1rem; /* Compact button padding */
+        font-size: 0.8rem; /* Smaller button text */
+    }
+
+    /* Contact page small mobile optimization */
+    .info-title {
+        font-size: 0.8rem; /* Even smaller contact titles */
+    }
+
+    .info-link {
+        font-size: 0.75rem; /* Compact contact links */
+    }
+
+    .info-text {
+        font-size: 0.75rem; /* Compact contact text */
+    }
+
+    .form-label {
+        font-size: 0.8rem; /* Compact form labels */
+    }
+
+    .cyber-input, .cyber-textarea {
+        font-size: 0.75rem; /* Compact input text */
+        padding: 0.5rem; /* Compact input padding */
+    }
+
+    .btn-submit {
+        font-size: 0.75rem; /* Compact submit button */
+        padding: 0.6rem 1rem;
+    }
+
+    /* Footer small mobile optimization */
+    .footer-text {
+        font-size: 0.7rem; /* Very compact footer text */
+    }
+
+    .social-link {
+        width: 35px; /* Even smaller social icons */
+        height: 35px;
+        font-size: 0.9rem; /* Compact icon size */
+        padding: 5px;
+    }
+
+    .social-links {
+        gap: 0.7rem; /* Less gap between social icons */
+    }
+
+    .cyber-footer {
+        padding: 1rem 0; /* Minimal footer padding */
+    }
+
     .work-grid {
         gap: 1rem;
         padding: 0 0.5rem;
@@ -1668,9 +1887,30 @@ form *,
     }
 }
 
-.hamburger {
-    margin-right: 10px !important;
-    /* Pushes icon left */
-    transform: translateX(-20px) !important;
-    /* Fine-tune position */
+/* Consistent hamburger positioning for all mobile devices */
+@media (max-width: 768px) {
+    .hamburger {
+        position: relative;
+        margin-right: 1rem !important;
+        margin-left: 0 !important;
+        transform: none !important;
+    }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+    .hamburger {
+        margin-right: 0.8rem !important;
+    }
+}
+
+/* Very small screens - 386px and below */
+@media (max-width: 386px) {
+    .hero-content {
+        padding: 0 0.7rem; /* Much wider box for very small screens */
+    }
+
+    .hamburger {
+        margin-right: 0.5rem !important;
+    }
 }
